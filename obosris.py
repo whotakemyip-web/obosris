@@ -1,3 +1,4 @@
+
 from heroku.modules import Module
 import asyncio
 
@@ -6,7 +7,7 @@ class OborsisModule(Module):
     commands = ["обосрись"]
 
     async def on_command(self, message):
-        target = message.reply_to_user.first_name if message.reply_to_user else "пользователь"
+        target = message.reply_to_user.first_name if message.reply_to_user else message.from_user.first_name
         await message.respond(f"{target} обосрётся через 20 секунд")
         await asyncio.sleep(20)
-        await message.respond(f"{target} обосрался")
+        await message.respond(f"{target} успешно обосрался")
